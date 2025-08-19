@@ -44,6 +44,7 @@ standalone_admin_password.txt
 
 # Docker
 .env
+.env.example
 
 # Data directories (keep structure but ignore content)
 data/postgres/
