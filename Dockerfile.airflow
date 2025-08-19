@@ -1,0 +1,10 @@
+FROM apache/airflow:2.9.0-python3.11
+
+USER airflow
+COPY airflow-requirements.txt /airflow-requirements.txt
+RUN pip install --no-cache-dir \
+	-r /airflow-requirements.txt \
+	--constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.0/constraints-3.11.txt"
+
+# Fallback: bake DAGs into the image so they are available even if bind mounts are not picked up on Windows
+COPY dags /opt/airflow/dags
