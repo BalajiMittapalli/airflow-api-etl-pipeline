@@ -46,17 +46,8 @@ standalone_admin_password.txt
 .env
 .env.example
 
-# Data directories (keep structure but ignore content)
-data/postgres/
-data/minio/
-data/raw/*/
-data/invalid/*/
-data/processed/*/
-
-# Keep directory structure
-!data/raw/.gitkeep
-!data/invalid/.gitkeep
-!data/processed/.gitkeep
+# Data directories (ignore completely)
+data/
 
 # Temporary files
 *.tmp
