@@ -1,0 +1,8 @@
+streamlit==1.24.1
+pandas
+SQLAlchemy
+psycopg2-binary
+plotly
+requests
+python-dotenv
+pyyaml
