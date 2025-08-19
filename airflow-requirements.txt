@@ -1,0 +1,8 @@
+pandas
+pandera>=0.17.0
+pyyaml
+requests
+sqlalchemy
+psycopg2-binary
+minio
+multimethod

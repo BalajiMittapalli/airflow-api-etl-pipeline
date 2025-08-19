@@ -1,0 +1,45 @@
+name: "github_events"
+description: "GitHub public events API"
+schedule: "@hourly"
+base_url: "https://api.github.com"
+endpoint: "/events"
+params:
+  per_page: 100
+auth:
+  type: "none"
+pagination:
+  type: "page"
+  page_param: "page"
+  start_page: 1
+rate_limit:
+  requests_per_minute: 30
+schema:
+  required_columns: ["id", "type", "created_at"]
+  dtypes:
+    id: "string"
+    type: "string"
+    created_at: "datetime"
+  validation:
+    unique_keys: ["id"]
+    non_null_fields: ["type"]
+mappings:
+  - source: "id"
+    target: "event_id"
+    type: "string"
+  - source: "type"
+    target: "event_type"
+    type: "string"
+  - source: "created_at"
+    target: "event_time"
+    type: "datetime"
+    format: "%Y-%m-%dT%H:%M:%SZ"
+  - source: "repo.id"
+    target: "repo_id"
+    type: "int"
+  - source: "actor.login"
+    target: "user_login"
+    type: "string"
+
+# Postgres loading configuration
+output_table: "github_events"
+unique_keys: ["event_id"]  # Use event_id as unique key for UPSERT strategy
